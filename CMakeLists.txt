@@ -1,60 +1,71 @@
 cmake_minimum_required(VERSION 3.14)
-project (qt_qml)
 
-message("######################################### Qt Widgets #########################################")
-find_package (Qt5Widgets)
+project(qt_qml VERSION 0.1 LANGUAGES CXX)
 
-set (MyProjectLib_src ${PROJECT_SOURCE_DIR}/src/mainwindow.cpp)
-set (MyProjectLib_hdr ${PROJECT_SOURCE_DIR}/include/mainwindow.h)
-set (MyProjectLib_ui  ${PROJECT_SOURCE_DIR}/UI/mainwindow.ui)
-set (MyProjectBin_src ${PROJECT_SOURCE_DIR}/src/main.cpp)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-qt5_wrap_cpp(MyProjectLib_hdr_moc ${MyProjectLib_hdr})
-qt5_wrap_ui (MyProjectLib_ui_moc  ${MyProjectLib_ui})
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
-include_directories (${PROJECT_SOURCE_DIR})
-include_directories (${PROJECT_BINARY_DIR})
-
-add_library (MyProjectLib SHARED 
-    ${MyProjectLib_src}
-    ${MyProjectLib_hdr_moc}
-    ${MyProjectLib_ui_moc}
-)
-target_link_libraries (MyProjectLib Qt5::Widgets)
-
-add_executable(MyProject ${MyProjectBin_src})
-target_link_libraries (MyProject MyProjectLib)
-
-
-message("######################################### qml #########################################")
-
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Quick Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Quick Widgets)
-
-#add_executable(counter src/demo.cpp src/counter.cpp)
-#target_link_libraries(counter  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
-
-
-add_executable(cpp_qml src/cpp_qml.cpp )
-target_link_libraries(cpp_qml  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+message( "QT version: "    ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}    )
 
 
 
+add_executable(context_property src/context_property.cpp src/user.cpp qml.qrc)
+target_link_libraries(context_property PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(loading_qml src/loading_qml.cpp qml.qrc)
+target_link_libraries(loading_qml  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(list_view src/list_view.cpp qml.qrc)
+target_link_libraries(list_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(grid_view src/grid_view.cpp qml.qrc)
+target_link_libraries(grid_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(signal_slot_qml src/signal_slot_qml.cpp qml.qrc src/user.cpp)
+target_link_libraries(signal_slot_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(signal_slot src/signal_slot.cpp src/counter.cpp)
+target_link_libraries(signal_slot PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+
+add_executable(receiving_signals_with_signal_handlers src/receiving_signals_with_signal_handlers.cpp qml.qrc src/person.cpp  src/database.cpp)
+target_link_libraries(receiving_signals_with_signal_handlers PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(property_change_signal_handlers src/property_change_signal_handlers.cpp qml.qrc)
+target_link_libraries(property_change_signal_handlers PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(application_window src/application_window.cpp qml.qrc)
+target_link_libraries(application_window PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(property_binding src/property_binding.cpp qml.qrc)
+target_link_libraries(property_binding PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
 
+add_executable(signal_slot_widget src/signal_slot_widget.cpp src/mytimer.cpp)
+target_link_libraries(signal_slot_widget  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(qt_quick_input_handlers src/qt_quick_input_handlers.cpp)
+target_link_libraries(qt_quick_input_handlers  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(qml_declrative_imperative src/qml_declrative_imperative.cpp)
+target_link_libraries(qml_declrative_imperative  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(positioning src/positioning.cpp)
+target_link_libraries(positioning  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(delegate_model src/delegate_model.cpp)
+target_link_libraries(delegate_model  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(component src/component.cpp)
+target_link_libraries(component  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
-
-
-
-
-
-
-
-
+add_executable(sandbox  src/sandbox.cpp )
+target_link_libraries(sandbox PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
