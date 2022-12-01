@@ -18,9 +18,10 @@ public:
     Counter() { m_value = 0; }
 
     int value() const { return m_value; }
+    void setValue(int value);
 
 public slots:
-    void setValue(int value);
+    void valueNotification();
 
 signals:
     void valueChanged(int newValue);

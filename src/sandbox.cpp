@@ -32,6 +32,13 @@ int main(int argc, char **argv)
     view.show();
     return app.exec();
     
+    /*
+    
+    onTriggered
+https://doc.qt.io/qt-6/qtquickhandlers-index.html
+QCoreApplication::sendEvent or QCoreApplication::postEvent
+    */
+    
 }
 
 

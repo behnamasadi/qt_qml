@@ -8,12 +8,12 @@
         <file>qml/LineEdit.qml</file>
         <file>qml/list_view.qml</file>
         <file>qml/application_window.qml</file>
-        <file>qml/qml_cpp.qml</file>
         <file>qml/recatngle_exercise.qml</file>
         <file>qml/signal_declarative.qml</file>
         <file>qml/signal_slot.qml</file>
         <file>qml/simple_quickview.qml</file>
         <file>qml/receiving_signals_with_signal_handlers.qml</file>
+		<file>qml/pinger.qml</file>
 		<file>images/HQ.png</file>
     </qresource>
 	<!-- 

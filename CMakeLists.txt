@@ -17,8 +17,8 @@ message( "QT version: "    ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR}    )
 
 
 
-add_executable(context_property src/context_property.cpp src/user.cpp qml.qrc)
-target_link_libraries(context_property PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+add_executable(property_context src/property_context.cpp src/user.cpp qml.qrc)
+target_link_libraries(property_context PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
 add_executable(loading_qml src/loading_qml.cpp qml.qrc)
 target_link_libraries(loading_qml  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
@@ -41,12 +41,14 @@ target_link_libraries(receiving_signals_with_signal_handlers PRIVATE Qt${QT_VERS
 add_executable(property_change_signal_handlers src/property_change_signal_handlers.cpp qml.qrc)
 target_link_libraries(property_change_signal_handlers PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
-add_executable(application_window src/application_window.cpp qml.qrc)
-target_link_libraries(application_window PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
-
 add_executable(property_binding src/property_binding.cpp qml.qrc)
 target_link_libraries(property_binding PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
+add_executable(property_system_example src/property_system_example.cpp src/property_system.cpp qml.qrc)
+target_link_libraries(property_system_example PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+
+add_executable(application_window src/application_window.cpp qml.qrc)
+target_link_libraries(application_window PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
 
 add_executable(signal_slot_widget src/signal_slot_widget.cpp src/mytimer.cpp)
 target_link_libraries(signal_slot_widget  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
@@ -66,6 +68,22 @@ target_link_libraries(delegate_model  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT
 add_executable(component src/component.cpp)
 target_link_libraries(component  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(pinger_qprocess src/pinger_qprocess.cpp  src/PingProcess.cpp qml.qrc)
+target_link_libraries(pinger_qprocess PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets)
+
 add_executable(sandbox  src/sandbox.cpp )
 target_link_libraries(sandbox PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(qqmlengine  src/qqmlengine.cpp )
+target_link_libraries(qqmlengine PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(data_type_conversion_cpp_qml  src/data_type_conversion_cpp_qml.cpp)
+target_link_libraries(data_type_conversion_cpp_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(exposing_cpp_types_to_qml  src/exposing_cpp_types_to_qml.cpp)
+target_link_libraries(exposing_cpp_types_to_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(registering_cpp_types_with_qml  src/registering_cpp_types_with_qml.cpp)
+target_link_libraries(registering_cpp_types_with_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
 
