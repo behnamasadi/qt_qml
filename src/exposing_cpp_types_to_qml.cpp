@@ -1,20 +1,19 @@
-// https://doc.qt.io/qt-6/qtqml-cppintegration-exposecppattributes.html
-/*
-any functionality that is appropriately exposed by a QObject-derived class or a Q_GADGET type
-is accessible from QML code.
-This enables C++ data and functions to be accessible directly from QML,
-often with little or no modification.
+#include "message.h"
+#include <QGuiApplication>
+#include <QQmlContext>
+#include <QQmlEngine>
+#include <QQuickView>
+#include <thread>
 
-The QML engine has the ability to introspect QObject instances through the meta-object system.
-This means any QML code can access the following members of an instance of a QObject-derived class
-
-Properties
-Methods (providing they are public slots or flagged with Q_INVOKABLE)
-Signals
-
-*/
-
-int main()
-{
-
+int main(int argc, char **argv) {
+  QGuiApplication app(argc, argv);
+  Message msg;
+  msg.setText("foo");
+  QQuickView view;
+  view.engine()->rootContext()->setContextProperty("msg", &msg);
+  view.setSource(QUrl("qrc:/qml/message.qml"));
+  view.show();
+  std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+  msg.setText("bar");
+  return app.exec();
 }

@@ -80,10 +80,19 @@ target_link_libraries(qqmlengine PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERS
 add_executable(data_type_conversion_cpp_qml  src/data_type_conversion_cpp_qml.cpp)
 target_link_libraries(data_type_conversion_cpp_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
-add_executable(exposing_cpp_types_to_qml  src/exposing_cpp_types_to_qml.cpp)
+add_executable(exposing_cpp_types_to_qml  src/exposing_cpp_types_to_qml.cpp  src/message.cpp qml.qrc)
 target_link_libraries(exposing_cpp_types_to_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
-add_executable(registering_cpp_types_with_qml  src/registering_cpp_types_with_qml.cpp)
+add_executable(registering_cpp_types_with_qml  src/registering_cpp_types_with_qml.cpp src/piechart.cpp qml.qrc)
 target_link_libraries(registering_cpp_types_with_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
 
+add_executable(q_gadget  src/q_gadget.cpp)
+target_link_libraries(q_gadget PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(q_object  src/q_object.cpp)
+target_link_libraries(q_object PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+
+
+#QObject-derived class or a Q_GADGET

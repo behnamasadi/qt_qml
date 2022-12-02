@@ -14,6 +14,8 @@
         <file>qml/simple_quickview.qml</file>
         <file>qml/receiving_signals_with_signal_handlers.qml</file>
 		<file>qml/pinger.qml</file>
+		<file>qml/pie_chart.qml</file>
+		<file>qml/message.qml</file>
 		<file>images/HQ.png</file>
     </qresource>
 	<!-- 

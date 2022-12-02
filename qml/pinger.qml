@@ -21,7 +21,8 @@ Rectangle {
 
     TextEdit {
         id: machineToPingTxt
-        text: "<entert machine to ping>"
+        //text: "4.2.2.4"
+        text: "/checknow"
         anchors.left: machineToPing.right
         anchors.top: machineToPing.top
         //        MouseArea {
@@ -31,6 +32,7 @@ Rectangle {
         //            }
         //        }
     }
+
     Button {
         id: start
         text: "start"
@@ -39,20 +41,34 @@ Rectangle {
         anchors.margins: 5
 
         onClicked: {
-
+            _pinger.setAddress(machineToPingTxt.text)
             _pinger.start()
         }
+    }
 
-        Button {
-            id: stop
-            text: "stop"
-            anchors.left: start.right
-            anchors.top: machineToPing.bottom
-            anchors.margins: 5
-            onClicked: {
+    Button {
+        id: stop
+        text: "stop"
+        anchors.left: start.right
+        anchors.top: machineToPing.bottom
+        anchors.margins: 5
+        onClicked: {
 
-                _pinger.stop()
+            _pinger.stop()
+        }
+    }
+
+    Label {
+        id: pingResult
+        text: "Ping Result:"
+
+        Connections {
+            target: _pinger
+            function onOutput(message) {
+                pingResult.text = message
             }
         }
+
+        anchors.centerIn: parent
     }
 }

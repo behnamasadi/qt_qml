@@ -18,10 +18,13 @@ int main(int argc, char **argv) {
 
   PingProcess pinger;
 
-  pinger.setAddress("4.2.2.4");
+  // pinger.setAddress("4.2.2.4");
 
   context->setContextProperty("_OS", pinger.operatingSystem());
   context->setContextProperty("_pinger", &pinger);
+
+  //  QObject::connect(&pinger, &PingProcess::output, currentuser,
+  //                   &User::changeRole);
 
   // connect(&pinger, &PingProcess::output, &publisher,
   // &outputPublisher::print);

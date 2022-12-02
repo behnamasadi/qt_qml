@@ -23,7 +23,14 @@ This repository contains my snippets for developing QT widgets and QML applicati
 - [GammaRay](https://www.kdab.com/development-resources/qt-tools/gammaray/)
 - [Component](src/component.cpp)
 - [Delegate Model](src/delegate_model.cpp)
-
+- [QObject](src/q_object.cpp)
+- [Q_GADGET](src/q_gadget.cpp)
+- [QQmlEngine](src/qqmlengine.cpp)
+- [QProcess](src/qprocess.cpp)
+- [Data Type Conversion Between QML and C++]()
+- [Registering C++ Types with the QML Type](docs/registering_cpp_types_with_qml.md)
+- [Exposing C++ Signals, Methods, Slots and Properties to QML](docs/exposing_cpp_code_to_qml.md)
+- [Overview - QML and C++ Integration](docs/qml_and_cpp_integration.md)
 
 Refs: [1](https://www.youtube.com/playlist?list=PL6CJYn40gN6hdNC1IGQZfVI707dh9DPRc), [2](https://github.com/KDAB/kdabtv/tree/master/qml-intro)
 

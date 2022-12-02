@@ -3,12 +3,8 @@
 
 PingProcess::PingProcess(QObject *parent) : QObject{parent} {
 
-  //  QObject::connect(&a, &Counter::valueChanged, &b, &Counter::setValue);
-  // QObject::connect(scrollBar, SIGNAL(valueChanged(int)),  label,
-  // SLOT(setNum(int)));
-
   connect(&m_process, &QProcess::errorOccurred, this,
-          &PingProcess::errorOccoured);
+          &PingProcess::errorOccurred);
 
   connect(&m_process, &QProcess::readyReadStandardError, this,
           &PingProcess::readyReadStandardError);
@@ -21,8 +17,9 @@ PingProcess::PingProcess(QObject *parent) : QObject{parent} {
   connect(&m_process, &QProcess::stateChanged, this,
           &PingProcess::stateChanged);
 
-  connect(&m_process, &QProcess::readyRead, this, &PingProcess::readyRead);
+  // connect(&m_process, &QProcess::readyRead, this, &PingProcess::readyRead);
 
+  // finish is overloaded
   connect(&m_process,
           QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
           &PingProcess::finished);
@@ -39,7 +36,11 @@ void PingProcess::setAddress(const QString &address) { m_address = address; }
 void PingProcess::start() {
   qInfo() << Q_FUNC_INFO;
   m_listening = true;
-  m_process.start(getProcess());
+  // m_process.start(getCommandPromptName());
+
+  m_process.setProgram("updater");
+  m_process.setArguments({m_address});
+  m_process.start();
 }
 
 void PingProcess::stop() {
@@ -48,7 +49,7 @@ void PingProcess::stop() {
   m_process.close();
 }
 
-void PingProcess::errorOccoured(QProcess::ProcessError error) {
+void PingProcess::errorOccurred(QProcess::ProcessError error) {
   if (!m_listening)
     return;
   qInfo() << Q_FUNC_INFO << error;
@@ -59,8 +60,17 @@ void PingProcess::finished(int exitCode, QProcess::ExitStatus exitStatus) {
   if (!m_listening)
     return;
   qInfo() << Q_FUNC_INFO;
+
+  qInfo() << exitCode;
+  qInfo() << exitStatus;
+
   Q_UNUSED(exitCode);
   Q_UNUSED(exitStatus);
+
+  //  emit output(QString::number(exitCode));
+
+  //  emit output(QString::number(exitStatus));
+
   emit output("complete");
 }
 
@@ -79,7 +89,7 @@ void PingProcess::readyReadStandardOutput() {
   if (!m_listening)
     return;
   qInfo() << Q_FUNC_INFO;
-  QByteArray data = m_process.readAllStandardError();
+  QByteArray data = m_process.readAllStandardOutput();
 
   emit output(data.trimmed());
 }
@@ -90,16 +100,14 @@ void PingProcess::stateChanged(QProcess::ProcessState newState) {
   qInfo() << Q_FUNC_INFO;
   switch (newState) {
   case QProcess::NotRunning:
-    emit("not running");
+    emit output("not running");
     break;
   case QProcess::Starting:
-    emit("Starting");
+    emit output("Starting");
     break;
   case QProcess::Running:
-    emit("Running");
-    startPing();
-    break;
-  default:
+    emit output("Running");
+    // startPing();
     break;
   }
 }
@@ -113,26 +121,26 @@ void PingProcess::readyRead() {
   emit output(data);
 }
 
-QString PingProcess::getProcess() {
-  qInfo() << Q_FUNC_INFO;
+// QString PingProcess::getCommandPromptName() {
+//   qInfo() << Q_FUNC_INFO;
 
-  if (QSysInfo::productType() == "window") {
-    return "cmd";
-  }
+//  if (QSysInfo::productType() == "window") {
+//    return "cmd";
+//  }
 
-  else if (QSysInfo::productType() == "osx") {
-    return "/bin/zsh";
-  } else {
-    return "bash";
-  }
-}
+//  else if (QSysInfo::productType() == "osx") {
+//    return "/bin/zsh";
+//  } else {
+//    return "bash";
+//  }
+//}
 
-void PingProcess::startPing() {
+// void PingProcess::startPing() {
 
-  QByteArray command;
-  command.append("ping" + m_address);
-  if (QSysInfo::productType() == "window") {
-    command.append("\n");
-    m_process.write(command);
-  }
-}
+//  QByteArray command;
+//  command.append("ping " + m_address);
+//  if (QSysInfo::productType() == "window") {
+//    command.append("\n");
+//    m_process.write(command);
+//  }
+//}
