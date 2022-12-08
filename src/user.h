@@ -21,6 +21,12 @@ class User : public QObject
     Q_PROPERTY(int age READ getAge WRITE setAge NOTIFY ageChanged)
     Q_PROPERTY(Role role READ getRole WRITE setRole NOTIFY roleChanged)
 
+    Q_INVOKABLE void  showMessageToUSer()
+    {
+
+    }
+
+
 public:
     //explicit User(QObject *parent = nullptr);
     enum Role{Dev, Manager, Tester, Fullstack};

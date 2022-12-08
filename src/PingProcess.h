@@ -4,6 +4,11 @@
 #include "qqml.h"
 #include <QObject>
 #include <QProcess>
+#include <QLoggingCategory>
+
+
+Q_DECLARE_LOGGING_CATEGORY(PINGER)
+
 
 class PingProcess : public QObject
 {
@@ -36,10 +41,6 @@ private slots:
 private:
     QProcess m_process;
     QString m_address;
-    //QString getCommandPromptName();
-    //void startPing();
-    bool m_listening;
-
 };
 
 #endif // PINGPROCESS_H

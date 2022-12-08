@@ -2,6 +2,7 @@
 #include "outputPublisher.hpp"
 #include <QApplication>
 #include <QGuiApplication>
+#include <QMessageBox>
 #include <QProcess>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -11,7 +12,9 @@
 
 int main(int argc, char **argv) {
 
-  QGuiApplication app(argc, argv);
+  //  QGuiApplication app(argc, argv);
+  QApplication app(argc, argv);
+
   QQuickView view;
 
   QQmlContext *context = view.rootContext();
@@ -23,32 +26,14 @@ int main(int argc, char **argv) {
   context->setContextProperty("_OS", pinger.operatingSystem());
   context->setContextProperty("_pinger", &pinger);
 
-  //  QObject::connect(&pinger, &PingProcess::output, currentuser,
-  //                   &User::changeRole);
-
-  // connect(&pinger, &PingProcess::output, &publisher,
-  // &outputPublisher::print);
-
-  //  User *currentuser = new User("foo", 10, User::Dev);
-  //  context->setContextProperty("_currentuser", currentuser);
-
   view.setSource(QUrl("qrc:/qml/pinger.qml"));
   view.show();
+
+  QObject::connect(&pinger, &PingProcess::output, [=](QString newValue) {
+    QMessageBox msgBox;
+    msgBox.setText(newValue);
+    msgBox.exec();
+  });
+
   return app.exec();
-
-  //  outputPublisher publisher;
-  //  //connect(&pinger, &PingProcess::output, &publisher,
-  //  &outputPublisher::print);
-
-  //  return app.exec();
-
-  /*
-  QObject *parent;
-  QString program = "C:\\Windows\\System32\\PING.EXE";
-  QStringList arguments;
-  arguments << "-n 10 "
-            << "example.com";
-  QProcess *myProcess = new QProcess(parent);
-  myProcess->start(program, arguments);
-*/
 }

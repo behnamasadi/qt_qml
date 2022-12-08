@@ -32,6 +32,14 @@ This repository contains my snippets for developing QT widgets and QML applicati
 - [Registering C++ Types with the QML Type](docs/registering_cpp_types_with_qml.md)
 - [Exposing C++ Signals, Methods, Slots and Properties to QML](docs/exposing_cpp_code_to_qml.md)
 - [QML and C++ Integration](docs/qml_and_cpp_integration.md)
+- [Model/View](docs/model_view.md)
+- [Signal Slot Lambda](src/signal_slot_lambda.cpp)
+- [QTableView](src/customTableModel.cpp)
+- [QML Table View](src/qml_table_view.cpp)
+- [QTreeView](src/q_tree_view.cpp)
+- [QML TreeView]()
+- [QAbstractListModel](src/q_list_view.cpp)
+- [QAbstractItemModel](src/custom_item_model.cpp)
+- [QAbstractItemView]()
 
 Refs: [1](https://www.youtube.com/playlist?list=PL6CJYn40gN6hdNC1IGQZfVI707dh9DPRc), [2](https://github.com/KDAB/kdabtv/tree/master/qml-intro)
-

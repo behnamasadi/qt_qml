@@ -4,6 +4,12 @@ Rectangle {
     width: 600
     height: 800
 
+    //    Connections {
+    //        target: _currentuser
+    //        function onOutput(message) {
+    //            pingResult.text = message
+    //        }
+    //    }
     Column {
         anchors.centerIn: parent
         spacing: 10

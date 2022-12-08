@@ -86,13 +86,28 @@ target_link_libraries(exposing_cpp_types_to_qml PRIVATE Qt${QT_VERSION_MAJOR}::C
 add_executable(registering_cpp_types_with_qml  src/registering_cpp_types_with_qml.cpp src/piechart.cpp qml.qrc)
 target_link_libraries(registering_cpp_types_with_qml PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
-
 add_executable(q_gadget  src/q_gadget.cpp)
 target_link_libraries(q_gadget PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
 add_executable(q_object  src/q_object.cpp)
 target_link_libraries(q_object PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
+add_executable(signal_slot_lambda  src/signal_slot_lambda.cpp src/counter.cpp)
+target_link_libraries(signal_slot_lambda PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(q_list_view  src/q_list_view.cpp)
+target_link_libraries(q_list_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(q_table_view  src/q_table_view.cpp src/customTableModel.cpp)
+target_link_libraries(q_table_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(qml_table_view  src/qml_table_view.cpp src/customTableModel.cpp)
+target_link_libraries(qml_table_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(q_tree_view src/q_tree_view.cpp)
+target_link_libraries(q_tree_view PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
+
+add_executable(custom_item_model src/custom_item_model.cpp)
+target_link_libraries(custom_item_model PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets )
 
 
-#QObject-derived class or a Q_GADGET

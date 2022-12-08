@@ -21,8 +21,8 @@ Rectangle {
 
     TextEdit {
         id: machineToPingTxt
-        //text: "4.2.2.4"
-        text: "/checknow"
+        text: "4.2.2.4"
+        //text: "/checknow"
         anchors.left: machineToPing.right
         anchors.top: machineToPing.top
         //        MouseArea {
