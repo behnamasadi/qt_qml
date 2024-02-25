@@ -1,0 +1,9 @@
+build/*
+*.user
+data/*
+.vscode/*
+qml/temp.qml
+src/temp.cpp
+src/sandbox.cpp
+CMakeLists.txt.user
+tmp.qml.qrc
