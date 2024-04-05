@@ -28,9 +28,13 @@
 	<file>qml/split_view.qml</file>
 	<file>qml/actions.qml</file>	
 	<file>qml/q_list_view.qml</file>
-	<file>qml/my_list_model.qml</file>	
+	<file>qml/my_list_model.qml</file>
+	<file>qml/tool_bar.qml</file>
 	<file>images/HQ.png</file>
 	<file>images/PNG_transparency_demonstration_1.png</file>
+	<file>images/new.png</file>
+	<file>images/open.png</file>
+	<file>images/save-as.png</file>
 </qresource>
 <!-- 
 <qresource prefix="/images">

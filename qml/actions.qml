@@ -42,6 +42,27 @@ ApplicationWindow
             Label {
                 text: UI.label
             }
+
+            ToolButton {
+                iconSource: "../images/new.png"
+            }
+            ToolButton {
+                iconSource: "../images/open.png"
+            }
+            ToolButton {
+                iconSource: "../images/save-as.png"
+            }
+            Item { 
+                Layout.fillWidth: true 
+            }
+            CheckBox {
+                text: "Enabled"
+                checked: true
+                Layout.alignment: Qt.AlignRight
+            }
+
+
+
             Item { Layout.fillWidth: true }
             CheckBox {
                 id: enabler

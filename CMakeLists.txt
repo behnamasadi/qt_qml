@@ -22,6 +22,7 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Qml Quick Widgets Gui Qui
 message(STATUS "QT version: " ${QT_VERSION_MAJOR}.${QT_VERSION_MINOR})
 message(STATUS "QT dir" ${Qt${QT_VERSION_MAJOR}_DIR})
 
+
 # As of Qt 5.12, this lists the COMPONENT names as follows:
 # 3DAnimation             Help                    QuickWidgets
 # 3DCore                  LinguistTools           RemoteObjects
@@ -41,8 +42,91 @@ message(STATUS "QT dir" ${Qt${QT_VERSION_MAJOR}_DIR})
 # Core                    QuickControls2          Widgets
 # Gamepad                 QuickTemplates2         Xml
 # Gui                     QuickTest               XmlPatterns
-set(VTK_DIR "$ENV{HOME}/usr/lib/cmake/vtk-9.2/")
+
+
+
+include(FetchContent)
+
+# # Fetch VTK
+# FetchContent_Declare(
+#   vtk
+#   GIT_REPOSITORY https://gitlab.kitware.com/vtk/vtk.git
+#   GIT_TAG        v9.2.0 # Adjust the tag as needed
+# )
+
+# FetchContent_GetProperties(vtk)
+# if(NOT vtk_POPULATED)
+#   FetchContent_Populate(vtk)
+  
+#   # Set custom options for VTK configuration
+#   set(VTK_REPORT_OPENGL_ERRORS OFF CACHE BOOL "Disable OpenGL error reporting" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_GUISupportQt YES CACHE BOOL "Enable VTK Qt GUI support" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_GUISupportQtQuick YES CACHE BOOL "Enable VTK QtQuick support" FORCE)
+#   set(VTK_WRAP_JAVA OFF CACHE BOOL "Disable VTK Java wrapping" FORCE)
+#   set(VTK_WRAP_PYTHON OFF CACHE BOOL "Disable VTK Python wrapping" FORCE)
+#   set(VTK_ENABLE_WRAPPING OFF CACHE BOOL "Disable all VTK wrapping" FORCE)
+#   set(VTK_BUILD_TESTING OFF CACHE BOOL "Disable VTK testing" FORCE)
+#   set(VTK_GROUP_ENABLE_Rendering DONT_WANT CACHE STRING "Disable VTK rendering" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_RenderingQt YES CACHE BOOL "Enable VTK Qt rendering" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_hdf YES CACHE BOOL "Enable VTK HDF support" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_IOHDF YES CACHE BOOL "Enable VTK HDF I/O support" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_InteractionImage YES CACHE BOOL "Enable VTK image interaction" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_RenderingLOD YES CACHE BOOL "Enable VTK Level of Detail rendering" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_ViewsCore YES CACHE BOOL "Enable VTK core views" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_ViewsContext2D YES CACHE BOOL "Enable VTK 2D context views" FORCE)
+#   set(VTK_MODULE_ENABLE_VTK_RenderingContextOpenGL2 YES CACHE BOOL "Enable VTK OpenGL2 rendering context" FORCE)
+
+#   add_subdirectory(${vtk_SOURCE_DIR} ${vtk_BINARY_DIR})
+# endif()
+
+
+
+# Set VTK_DIR to the VTK build directory
+#set(VTK_DIR ${vtk_BINARY_DIR})
+
+
+
+
+# Find the VTK package to include its targets
+#find_package(VTK REQUIRED)
+
+# Include VTK's directories
+include_directories(${VTK_INCLUDE_DIRS})
+
+# Link against the VTK libraries
+#target_link_libraries(YourTargetName ${VTK_LIBRARIES})
+
+
+
+message("VTK_LIBRARIES:" VTK::CommonCore)
+message("VTK_INCLUDE_DIRS:" ${VTK_INCLUDE_DIRS})
+
+
+
+
+
+
+
+## Fetch PCL
+#FetchContent_Declare(
+#  pcl
+#  GIT_REPOSITORY https://github.com/PointCloudLibrary/pcl.git
+#  GIT_TAG        pcl-1.13.0 # Adjust the tag as needed#
+#)
+#FetchContent_MakeAvailable(pcl)
+
+
+#set(VTK_DIR "$ENV{HOME}/usr/lib/cmake/vtk-9.3/")
 find_package(VTK)
+
+
+if(VTK_FOUND)
+
+  message("VTK_VERSION:" ${VTK_VERSION})
+  message("VTK_LIBRARIES:" ${VTK_LIBRARIES})
+else()
+  #message(FATAL_ERROR "Could not find VTK in specified VTK_DIR")
+endif()
 
 set(PCL_DIR "$ENV{HOME}/usr/share/pcl-1.13/")
 find_package(PCL)
@@ -228,5 +312,10 @@ target_link_libraries(logging_category PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${Q
 
 add_executable(environmental_variable_in_qt src/environmental_variable_in_qt.cpp)
 target_link_libraries(environmental_variable_in_qt PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets Qt${QT_VERSION_MAJOR}::Concurrent)
+
+add_executable(tool_bar src/tool_bar.cpp qml.qrc)
+target_link_libraries(tool_bar PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets Qt${QT_VERSION_MAJOR}::Concurrent)
+
+
 
 
