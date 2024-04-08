@@ -117,7 +117,7 @@ message("VTK_INCLUDE_DIRS:" ${VTK_INCLUDE_DIRS})
 
 
 #set(VTK_DIR "$ENV{HOME}/usr/lib/cmake/vtk-9.3/")
-find_package(VTK)
+find_package(VTK QUIET)
 
 
 if(VTK_FOUND)
@@ -129,7 +129,7 @@ else()
 endif()
 
 set(PCL_DIR "$ENV{HOME}/usr/share/pcl-1.13/")
-find_package(PCL)
+find_package(PCL QUIET)
 
 if(${PCL_FOUND} AND ${VTK_FOUND})
     include_directories(${PCL_INCLUDE_DIRS})
@@ -312,10 +312,6 @@ target_link_libraries(logging_category PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${Q
 
 add_executable(environmental_variable_in_qt src/environmental_variable_in_qt.cpp)
 target_link_libraries(environmental_variable_in_qt PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets Qt${QT_VERSION_MAJOR}::Concurrent)
-
-add_executable(tool_bar src/tool_bar.cpp qml.qrc)
-target_link_libraries(tool_bar PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt5::Widgets Qt${QT_VERSION_MAJOR}::Concurrent)
-
 
 
 

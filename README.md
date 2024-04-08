@@ -104,7 +104,7 @@ cmake --build --preset ninja-multi-release
 - [QML and C++ Integration](docs/qml_and_cpp_integration.md)
 - [QQuickItem, Item QML Type](docs/item_qml_type.md)
 - [QML Object Attributes](docs/qml_object_attributes.md)
-- Menu Bar
+- [Menu Bar, Tool Bar, Tool Box](docs/action_qml_type.md)
 - QML Layout
   - [ColumnLayout]()
   - [GridLayout](src/grid_view.cpp)

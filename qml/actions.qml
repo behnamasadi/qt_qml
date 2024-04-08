@@ -1,14 +1,32 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
-
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 1.4
-ApplicationWindow
-{
-    height:600
-    width:800
 
- Action {
+ApplicationWindow {
+    visible: true
+    width: 640
+    height: 480
+    title: "QML Application"
+    property bool newActionActivated: false
+
+    function newDocument() {
+        console.log("Creating a new document...")
+        // Implement new document creation logic here
+        newActionActivated = !newActionActivated // Toggle the activation state
+    }
+
+    function openDocument() {
+        console.log("Opening a document...")
+        //fileDialog.open() // Opens the dialog to select a file
+    }
+
+    function saveDocument() {
+        console.log("Saving the current document...")
+        // Implement document save logic here
+    }
+
+    Action {
         id: copyAction
         text: "&Copy"
         shortcut: StandardKey.Copy
@@ -35,39 +53,60 @@ ApplicationWindow
         onTriggered: activeFocusItem.paste()
     }
 
+    // Define actions for New, Open, and Save
+    Action {
+        id: newAction
+        text: "&New"
+        shortcut: StandardKey.New
+        iconSource: newActionActivated ? "qrc:/images/new_active.png" : "qrc:/images/new.png"
+        onTriggered: newDocument()
+    }
+
     toolBar: ToolBar {
         RowLayout {
             anchors.fill: parent
             anchors.margins: spacing
-            Label {
-                text: UI.label
-            }
-
             ToolButton {
-                iconSource: "../images/new.png"
+                action: newAction
             }
             ToolButton {
-                iconSource: "../images/open.png"
+                iconSource: "qrc:/images/open.png"
+                onClicked: openDocument()
             }
             ToolButton {
-                iconSource: "../images/save-as.png"
+                iconSource: "qrc:/images/save.png"
+                onClicked: saveDocument()
             }
-            Item { 
-                Layout.fillWidth: true 
+            Item {
+                Layout.fillWidth: true
             }
             CheckBox {
                 text: "Enabled"
                 checked: true
                 Layout.alignment: Qt.AlignRight
             }
+        }
+    }
 
-
-
-            Item { Layout.fillWidth: true }
-            CheckBox {
-                id: enabler
-                text: "Enabled"
-                checked: true
+    TabView {
+        id: tabView
+        anchors.fill: parent
+        Tab {
+            title: "Red"
+            Rectangle {
+                color: "red"
+            }
+        }
+        Tab {
+            title: "Blue"
+            Rectangle {
+                color: "blue"
+            }
+        }
+        Tab {
+            title: "Green"
+            Rectangle {
+                color: "green"
             }
         }
     }
@@ -75,6 +114,21 @@ ApplicationWindow
     menuBar: MenuBar {
         Menu {
             title: "&File"
+
+            MenuItem {
+                action: newAction
+            }
+
+            MenuItem {
+                text: "&Open"
+                shortcut: StandardKey.Open
+                onTriggered: openDocument()
+            }
+            MenuItem {
+                text: "&Save"
+                shortcut: StandardKey.Save
+                onTriggered: saveDocument()
+            }
             MenuItem {
                 text: "E&xit"
                 shortcut: StandardKey.Quit
@@ -84,17 +138,22 @@ ApplicationWindow
         Menu {
             title: "&Edit"
             visible: tabView.currentIndex == 2
-            MenuItem { action: cutAction }
-            MenuItem { action: copyAction }
-            MenuItem { action: pasteAction }
+            MenuItem {
+                action: cutAction
+            }
+            MenuItem {
+                action: copyAction
+            }
+            MenuItem {
+                action: pasteAction
+            }
         }
         Menu {
             title: "&Help"
             MenuItem {
                 text: "About..."
-                onTriggered: aboutDialog.open()
+                //onTriggered: aboutDialog.open()
             }
         }
     }
-
 }
