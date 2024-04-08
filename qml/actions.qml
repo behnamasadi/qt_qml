@@ -62,32 +62,31 @@ ApplicationWindow {
         onTriggered: newDocument()
     }
 
-    toolBar: ToolBar {
-        RowLayout {
-            anchors.fill: parent
-            anchors.margins: spacing
-            ToolButton {
-                action: newAction
-            }
-            ToolButton {
-                iconSource: "qrc:/images/open.png"
-                onClicked: openDocument()
-            }
-            ToolButton {
-                iconSource: "qrc:/images/save.png"
-                onClicked: saveDocument()
-            }
-            Item {
-                Layout.fillWidth: true
-            }
-            CheckBox {
-                text: "Enabled"
-                checked: true
-                Layout.alignment: Qt.AlignRight
-            }
-        }
-    }
-
+    //    toolBar: ToolBar {
+    //        RowLayout {
+    //            anchors.fill: parent
+    //            anchors.margins: spacing
+    //            ToolButton {
+    //                action: newAction
+    //            }
+    //            ToolButton {
+    //                iconSource: "qrc:/images/open.png"
+    //                onClicked: openDocument()
+    //            }
+    //            ToolButton {
+    //                iconSource: "qrc:/images/save.png"
+    //                onClicked: saveDocument()
+    //            }
+    //            Item {
+    //                Layout.fillWidth: true
+    //            }
+    //            CheckBox {
+    //                text: "Enabled"
+    //                checked: true
+    //                Layout.alignment: Qt.AlignRight
+    //            }
+    //        }
+    //    }
     TabView {
         id: tabView
         anchors.fill: parent
@@ -107,6 +106,37 @@ ApplicationWindow {
             title: "Green"
             Rectangle {
                 color: "green"
+
+                anchors.fill: parent
+
+                ToolBar {
+                    id: greenToolBar
+                    Layout.fillWidth: true
+                    anchors.top: parent.top
+                    RowLayout {
+                        anchors.fill: parent
+                        anchors.margins: spacing
+                        ToolButton {
+                            action: newAction
+                        }
+                        ToolButton {
+                            iconSource: "qrc:/images/open.png"
+                            onClicked: openDocument()
+                        }
+                        ToolButton {
+                            iconSource: "qrc:/images/save.png"
+                            onClicked: saveDocument()
+                        }
+                        Item {
+                            Layout.fillWidth: true
+                        }
+                        CheckBox {
+                            text: "Enabled"
+                            checked: true
+                            Layout.alignment: Qt.AlignRight
+                        }
+                    }
+                }
             }
         }
     }
