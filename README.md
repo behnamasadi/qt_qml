@@ -158,4 +158,9 @@ cmake --build --preset ninja-multi-release
 - [Qt Quick Controls Version](docs/qt_quick_controls_version.md)
 - [Environmental Variable In Qt](docs/environmental_variable_in_qt.md)
 
+# Tools and Utility
+- [clazy](https://github.com/KDE/clazy)  
+- [GammaRay](https://github.com/KDAB/GammaRay)
+
+
 Refs: [1](https://www.youtube.com/playlist?list=PL6CJYn40gN6hdNC1IGQZfVI707dh9DPRc), [2](https://github.com/KDAB/kdabtv/tree/master/qml-intro)
